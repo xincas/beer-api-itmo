@@ -1,0 +1,58 @@
+﻿[
+  {
+    "OrderId": 1,
+    "BeerId": 201,
+    "Quantity": 2,
+    "Price": 5.00,
+    "TotalPrice": 10.00
+  },
+  {
+    "OrderId": 1,
+    "BeerId": 202,
+    "Quantity": 5,
+    "Price": 5.10,
+    "TotalPrice": 25.50
+  },
+  {
+    "OrderId": 2,
+    "BeerId": 203,
+    "Quantity": 4,
+    "Price": 7.50,
+    "TotalPrice": 30.00
+  },
+  {
+    "OrderId": 2,
+    "BeerId": 204,
+    "Quantity": 3,
+    "Price": 10.00,
+    "TotalPrice": 30.00
+  },
+  {
+    "OrderId": 3,
+    "BeerId": 205,
+    "Quantity": 2,
+    "Price": 10.00,
+    "TotalPrice": 20.00
+  },
+  {
+    "OrderId": 4,
+    "BeerId": 206,
+    "Quantity": 3,
+    "Price": 15.00,
+    "TotalPrice": 45.00
+  },
+  {
+    "OrderId": 5,
+    "BeerId": 207,
+    "Quantity": 5,
+    "Price": 5.00,
+    "TotalPrice": 25.00
+  },
+  {
+    "OrderId": 6,
+    "BeerId": 208,
+    "Quantity": 10,
+    "Price": 10.00,
+    "TotalPrice": 100.00
+  }
+]
