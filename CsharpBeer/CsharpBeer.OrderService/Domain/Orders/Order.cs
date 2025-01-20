@@ -5,7 +5,6 @@ namespace CsharpBeer.OrderService.Domain.Orders;
 
 public class Order
 {
-    [JsonPropertyName("Items")]
     private List<OrderItem> _items = [];
     public long OrderId { get; set; }
     public long UserId { get; set; }
@@ -70,10 +69,5 @@ public class Order
         };
         order.AddItems(orderItems);
         return order;
-    }
-    
-    public void SetItems(List<OrderItem>? items)
-    {
-        _items = items ?? [];
     }
 }
