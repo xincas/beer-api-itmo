@@ -47,16 +47,9 @@ public class Order
     
     public void UpdateOrAddItems(IEnumerable<OrderItem> orderItems)
     {
-        foreach (var item in orderItems)
-        {
-            UpdateOrAddItem(item);
-        }
+        foreach (var item in orderItems) UpdateOrAddItem(item);
     }
     
-    public void UpdateItems(IEnumerable<OrderItem> items)
-    {
-        foreach (var orderItem in items) UpdateItem(orderItem);
-    }
     public static Order Create(long userId, IEnumerable<OrderItem> items)
     {
         var orderItems = items.ToList();
