@@ -40,8 +40,8 @@ public class OrderMicroserviceFactory : WebApplicationFactory<IApiMarker>, IAsyn
 
     private const string ordersSeedPath = "orders.json";
     private const string orderItemsSeedPath = "orderitems.json";
-    private List<Order>? _orders { get; set; }
-    private List<OrderItem>? _items { get; set; }
+    private List<Order> _orders { get; set; }
+    private List<OrderItem> _items { get; set; }
     
     public readonly Mock<IAuthService> MockAuthService = new();
     public readonly Mock<ICatalogService> MockCatalogService = new();
@@ -73,8 +73,8 @@ public class OrderMicroserviceFactory : WebApplicationFactory<IApiMarker>, IAsyn
         
         await using var orderStream = File.OpenRead(ordersSeedPath);
         await using var orderItemsStream = File.OpenRead(orderItemsSeedPath);
-        _orders = await JsonSerializer.DeserializeAsync<List<Order>>(orderStream);
-        _items = await JsonSerializer.DeserializeAsync<List<OrderItem>>(orderItemsStream);
+        _orders = await JsonSerializer.DeserializeAsync<List<Order>>(orderStream) ?? throw new ArgumentException("Can't parse order seed data");
+        _items = await JsonSerializer.DeserializeAsync<List<OrderItem>>(orderItemsStream) ?? throw new ArgumentException("Can't parse orderitems seed data");
     }
 
     public async Task DbCallAsync(Func<OrderDbContext, Task> action)
