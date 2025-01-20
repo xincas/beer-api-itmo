@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CsharpBeer.OrderService\CsharpBeer.OrderService.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Grpc.Core.Testing" Version="2.46.6" />
+    </ItemGroup>
+
+</Project>
