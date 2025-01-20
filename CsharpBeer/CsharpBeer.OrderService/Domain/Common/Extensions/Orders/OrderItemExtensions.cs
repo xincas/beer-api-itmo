@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Api;
+﻿using Api;
 using Common.Protobuf;
 using CsharpBeer.OrderService.Domain.Orders;
 

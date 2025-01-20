@@ -1,9 +1,6 @@
-﻿using System.Text;
-using CsharpBeer.CommonTests;
+﻿using CsharpBeer.CommonTests;
 using CsharpBeer.OrderService.Domain.Orders;
 using FluentAssertions;
-using Newtonsoft.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace CsharpBeer.UnitTests.Domain.Orders;
 

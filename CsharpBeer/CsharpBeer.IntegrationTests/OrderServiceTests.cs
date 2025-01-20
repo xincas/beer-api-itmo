@@ -1,15 +1,11 @@
 using Api;
 using Common.Protobuf;
 using CsharpBeer.CommonTests;
-using CsharpBeer.OrderService.Domain.Common.Interfaces;
 using CsharpBeer.OrderService.Domain.Orders;
-using CsharpBeer.OrderService.Infrastructure.Database;
 using CsharpBeer.OrderService.Services.Common.Errors;
 using FluentAssertions;
 using Grpc.Core;
-using Grpc.Net.Client;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
 namespace CsharpBeer.IntegrationTests;

@@ -1,8 +1,6 @@
-﻿using System.Globalization;
-using Api;
+﻿using Api;
 using Common.Protobuf;
 using CsharpBeer.OrderService.Domain.Orders;
-using Grpc.Core;
 
 namespace CsharpBeer.OrderService.Domain.Common.Extensions.Orders;
 

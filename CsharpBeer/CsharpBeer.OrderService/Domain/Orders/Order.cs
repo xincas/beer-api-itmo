@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using CsharpBeer.OrderService.Domain.Common.Extensions.Orders;
+﻿using CsharpBeer.OrderService.Domain.Common.Extensions.Orders;
 
 namespace CsharpBeer.OrderService.Domain.Orders;
 
