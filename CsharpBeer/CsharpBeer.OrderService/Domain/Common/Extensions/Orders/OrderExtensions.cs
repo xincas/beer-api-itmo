@@ -10,18 +10,17 @@ public static class OrderExtensions
 {
     public static Order CopyFieldsIfNotNull(this Order original, Order other)
     {
-        //TODO add items conversion
-        //original.Items
         original.Total = other.Total == default ? original.Total : other.Total;
         original.Status = other.Status == OrderStatus.None ? original.Status : other.Status;
+        original.UpdateOrAddItems(other.Items);
 
         return original;
     }
 
     public static Order ToDomain(this OrderDto dto)
     {
-        var order = new Order { OrderId = dto.OrderId, UserId = dto.UserId };
-        order.AddOrderItems(dto.Items.ToDomain(order.OrderId));
+        var order = new Order { OrderId = dto.OrderId, UserId = dto.UserId, Status = dto.Status.ToDomain() };
+        order.AddItems(dto.Items.ToDomain(order.OrderId));
         return order;
     }
 

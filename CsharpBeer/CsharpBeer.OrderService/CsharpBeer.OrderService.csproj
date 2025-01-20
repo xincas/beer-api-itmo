@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf ProtoRoot="../../protos/" Include="../../protos/order/*.proto" GrpcServices="Server" AdditionalImportDirs="../../protos/"/>
+        <Protobuf ProtoRoot="../../protos/" Include="../../protos/order/*.proto" GrpcServices="Both" AdditionalImportDirs="../../protos/"/>
         <Protobuf ProtoRoot="../../protos/" Include="../../protos/catalog/*.proto" GrpcServices="Client" AdditionalImportDirs="../../protos/"/>
         <Protobuf ProtoRoot="../../protos/" Include="../../protos/sso/*.proto" GrpcServices="Client" AdditionalImportDirs="../../protos/"/>
     </ItemGroup>
@@ -27,6 +27,10 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="CsharpBeer.IntegrationTests" />
     </ItemGroup>
 
 </Project>

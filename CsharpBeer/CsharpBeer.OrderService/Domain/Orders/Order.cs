@@ -1,7 +1,11 @@
-﻿namespace CsharpBeer.OrderService.Domain.Orders;
+﻿using System.Text.Json.Serialization;
+using CsharpBeer.OrderService.Domain.Common.Extensions.Orders;
+
+namespace CsharpBeer.OrderService.Domain.Orders;
 
 public class Order
 {
+    [JsonPropertyName("Items")]
     private List<OrderItem> _items = [];
     public long OrderId { get; set; }
     public long UserId { get; set; }
@@ -9,7 +13,7 @@ public class Order
     public OrderStatus Status { get; set; }
     public IReadOnlyCollection<OrderItem> Items => _items;
 
-    public void AddOrderItem(OrderItem orderItem)
+    public void AddItem(OrderItem orderItem)
     {
         var item = _items.FirstOrDefault(oi => oi.BeerId == orderItem.BeerId);
         if (item is not null) return;
@@ -19,19 +23,57 @@ public class Order
         Total = _items.Sum(oi => oi.Quantity * oi.Price);
     }
 
-    public void AddOrderItems(IEnumerable<OrderItem> items)
+    public void AddItems(IEnumerable<OrderItem> items)
     {
-        foreach (var orderItem in items) AddOrderItem(orderItem);
+        foreach (var orderItem in items) AddItem(orderItem);
+    }
+
+    private bool UpdateItem(OrderItem orderItem)
+    {
+        var item = _items.FirstOrDefault(oi => oi.BeerId == orderItem.BeerId);
+        if (item is null) return false;
+
+        var willTotalChange = item.WillTotalChange(orderItem);
+        item.CopyFieldsIfNotNull(orderItem);
+        Total = willTotalChange ? _items.Sum(oi => oi.Quantity * oi.Price) : Total;
+        return true;
+    }
+
+    public void UpdateOrAddItem(OrderItem orderItem)
+    {
+        if (!UpdateItem(orderItem))
+        {
+            AddItem(orderItem);
+        }
+    }
+    
+    public void UpdateOrAddItems(IEnumerable<OrderItem> orderItems)
+    {
+        foreach (var item in orderItems)
+        {
+            UpdateOrAddItem(item);
+        }
+    }
+    
+    public void UpdateItems(IEnumerable<OrderItem> items)
+    {
+        foreach (var orderItem in items) UpdateItem(orderItem);
     }
     public static Order Create(long userId, IEnumerable<OrderItem> items)
     {
         var orderItems = items.ToList();
         var order = new Order()
         {
+            OrderId = default,
             UserId = userId,
             Status = OrderStatus.Created,
         };
-        order.AddOrderItems(orderItems);
+        order.AddItems(orderItems);
         return order;
+    }
+    
+    public void SetItems(List<OrderItem>? items)
+    {
+        _items = items ?? [];
     }
 }

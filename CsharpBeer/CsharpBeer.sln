@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpBeer.OrderService", "CsharpBeer.OrderService\CsharpBeer.OrderService.csproj", "{CE7EF989-4E8C-426B-997C-AA503605B725}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpBeer.Tests", "CsharpBeer.Tests\CsharpBeer.Tests.csproj", "{63A1BE7C-085D-430F-8873-3FDC26ED11C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpBeer.UnitTests", "CsharpBeer.UnitTests\CsharpBeer.UnitTests.csproj", "{63A1BE7C-085D-430F-8873-3FDC26ED11C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpBeer.IntegrationTests", "CsharpBeer.IntegrationTests\CsharpBeer.IntegrationTests.csproj", "{A7E5516F-D49E-49AF-B49A-087E1E0301F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CAC1E522-4C3B-4A26-BD92-3601B7AB1E85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E102C3F6-855C-4AC6-B7CA-A7BED403E0AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpBeer.CommonTests", "CsharpBeer.CommonTests\CsharpBeer.CommonTests.csproj", "{261C0976-5976-4739-9D7E-A72637AE8B7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +27,19 @@ Global
 		{63A1BE7C-085D-430F-8873-3FDC26ED11C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63A1BE7C-085D-430F-8873-3FDC26ED11C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63A1BE7C-085D-430F-8873-3FDC26ED11C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E5516F-D49E-49AF-B49A-087E1E0301F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E5516F-D49E-49AF-B49A-087E1E0301F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E5516F-D49E-49AF-B49A-087E1E0301F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E5516F-D49E-49AF-B49A-087E1E0301F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{261C0976-5976-4739-9D7E-A72637AE8B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{261C0976-5976-4739-9D7E-A72637AE8B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{261C0976-5976-4739-9D7E-A72637AE8B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{261C0976-5976-4739-9D7E-A72637AE8B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A7E5516F-D49E-49AF-B49A-087E1E0301F6} = {CAC1E522-4C3B-4A26-BD92-3601B7AB1E85}
+		{63A1BE7C-085D-430F-8873-3FDC26ED11C8} = {CAC1E522-4C3B-4A26-BD92-3601B7AB1E85}
+		{CE7EF989-4E8C-426B-997C-AA503605B725} = {E102C3F6-855C-4AC6-B7CA-A7BED403E0AB}
+		{261C0976-5976-4739-9D7E-A72637AE8B7C} = {CAC1E522-4C3B-4A26-BD92-3601B7AB1E85}
 	EndGlobalSection
 EndGlobal

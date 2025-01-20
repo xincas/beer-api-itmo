@@ -9,9 +9,16 @@ public class OrderRepository(OrderDbContext context) : IOrderRepository
 {
     private readonly OrderDbContext _context = context;
 
-    public async Task<Order> GetOrderById(long id)
+    public async Task<Order?> GetOrderById(long id, bool includeItems = false)
     {
-        var order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == id);
+        var query = _context.Orders.AsQueryable();
+
+        if (includeItems)
+        {
+            query = query.Include(o => o.Items);
+        }
+        
+        var order = await query.FirstOrDefaultAsync(o => o.OrderId == id);
         
         //TODO result patter to project
         //if (order is null) return Error.NotFound($"Order with id={id} not found.");
@@ -49,7 +56,7 @@ public class OrderRepository(OrderDbContext context) : IOrderRepository
         _context.Orders.Remove(order);
     }
 
-    public async Task<Order> GetOrderByIdAsNoTrack(long id)
+    public async Task<Order?> GetOrderByIdAsNoTrack(long id)
     {
         var order = await _context.Orders.AsNoTracking().FirstOrDefaultAsync(o => o.OrderId == id);
         

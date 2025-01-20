@@ -6,7 +6,7 @@ public class OrderItem
     public long BeerId { get; set; }
     public int Quantity { get; set; }
     public double Price { get; set; }
-    
+    public double TotalPrice => Price * Quantity;
     public virtual Order Order { get; set; }
 
     public static OrderItem Create(long beerId,

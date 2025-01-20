@@ -9,11 +9,14 @@ public static class OrderItemExtensions
 {
     public static OrderItem CopyFieldsIfNotNull(this OrderItem original, OrderItem other)
     {
-        original.Price = other.Price == default ? original.Price : other.Price;
-        original.Quantity = other.Quantity == default ? original.Quantity : other.Quantity;
+        original.Price = other.Price == original.Price ? original.Price : other.Price;
+        original.Quantity = other.Quantity == original.Quantity ? original.Quantity : other.Quantity;
 
         return original;
     }
+    
+    public static bool WillTotalChange(this OrderItem left, OrderItem right) =>
+        left.Quantity != right.Quantity || left.Price != right.Price;
 
     public static OrderItem ToDomain(this Beer beer, long orderId = -1,int quantity = 1) => 
         new()

@@ -6,10 +6,8 @@ namespace CsharpBeer.OrderService.Infrastructure.Catalog;
 
 public class CatalogService(Api.Catalog.CatalogClient catalogClient) : ICatalogService
 {
-    private readonly Api.Catalog.CatalogClient _catalogClient = catalogClient;
-
     public async Task<Beer> GetBeerByIdAsync(long beerId) => 
-        (await _catalogClient.GetBeerAsync(new GetBeerRequest() { BeerId = beerId })).Beer;
+        (await catalogClient.GetBeerAsync(new GetBeerRequest { BeerId = beerId })).Beer;
 
     public async Task<List<Beer>> GetBeersByIdAsync(IEnumerable<CreateOrderItemDto> dtos)
     {

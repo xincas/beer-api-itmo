@@ -1,8 +1,9 @@
-using CsharpBeer.OrderService.Services;
-using CsharpBeer.OrderService;
-using CsharpBeer.OrderService.Infrastructure.Database;
-using AuthC = Auth.Auth;
 using Api;
+using CsharpBeer.OrderService;
+using CsharpBeer.OrderService.Configuration;
+using CsharpBeer.OrderService.Infrastructure;
+using CsharpBeer.OrderService.Services;
+using AuthC = Auth.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
@@ -17,19 +18,16 @@ builder.Configuration.AddEnvironmentVariables();
         op.EnableDetailedErrors = true;
     });
     
-    var catalogAddress = builder.Configuration.GetSection(Constants.GRPC_SECTION)[Constants.CATALOG_ADDRESS];
-    var identityAddress = builder.Configuration.GetSection(Constants.GRPC_SECTION)[Constants.IDENTITY_ADDRESS];
-    builder.Services.AddGrpcClient<Catalog.CatalogClient>(f => f.Address = new Uri(catalogAddress ?? ""));
-    builder.Services.AddGrpcClient<AuthC.AuthClient>(f => f.Address = new Uri(identityAddress ?? ""));
+    var grpcConnections = builder.Configuration.GetSection(Constants.GRPC_SECTION).Get<GrpcConnection>() ?? throw new ConfigurationException($"Could not map section {Constants.GRPC_SECTION}");
+    builder.Services.AddGrpcClient<Catalog.CatalogClient>(f => f.Address = new Uri(grpcConnections.CatalogAddress ?? ""));
+    builder.Services.AddGrpcClient<AuthC.AuthClient>(f => f.Address = new Uri(grpcConnections.IdentityAddress ?? ""));
     
     builder.Services.AddInfrastructure(builder.Configuration);
 }
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 {
-    //app.AddInfrastructureMiddleware();
     app.MapGrpcService<OrderService>();
 }
 
